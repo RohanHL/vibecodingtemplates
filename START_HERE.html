@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>START HERE - Cursor Setup Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .step {
+            background: #f7fafc;
+            border-left: 5px solid #667eea;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-description {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin: 0;
+        }
+
+        .big-button {
+            display: block;
+            background: #667eea;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .big-button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .warning {
+            background: #fffaf0;
+            border: 2px solid #ed8936;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-title {
+            color: #c05621;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success {
+            background: #f0fff4;
+            border: 2px solid #48bb78;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .download-options {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .option-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .option-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-desc {
+            color: #718096;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .help-box {
+            background: #ebf8ff;
+            border: 2px solid #4299e1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .help-text {
+            font-size: 1.1rem;
+            color: #2c5282;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">👋</div>
+        <h1>Welcome! Start Here</h1>
+
+        <p style="text-align: center; font-size: 1.3rem; color: #667eea; font-weight: bold;">
+            You're about to set up AI-powered coding tools
+        </p>
+
+        <p style="text-align: center;">
+            Don't worry if you're not technical - this guide will walk you through everything step by step.
+        </p>
+
+        <div class="warning">
+            <div class="warning-title">⏱️ Time Needed</div>
+            Set aside <strong>30 minutes</strong> to complete this setup without rushing.
+        </div>
+
+        <h2 style="color: #2d3748; margin-top: 2rem; margin-bottom: 1rem;">What You'll Be Installing:</h2>
+
+        <div class="step">
+            <div class="step-number">1️⃣</div>
+            <div class="step-title">Cursor</div>
+            <div class="step-description">A code editor (like Microsoft Word, but for code)</div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2️⃣</div>
+            <div class="step-title">Claude Code</div>
+            <div class="step-description">An AI assistant that helps you write code</div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3️⃣</div>
+            <div class="step-title">Perplexity Search</div>
+            <div class="step-description">Gives the AI the ability to search the web for current information</div>
+        </div>
+
+        <div class="success">
+            <p style="margin: 0; font-size: 1.1rem; color: #22543d;">
+                <strong>✓ You're in the right place!</strong> This guide has helped hundreds of beginners get set up successfully.
+            </p>
+        </div>
+
+        <h2 style="color: #2d3748; margin-top: 2rem; margin-bottom: 1rem;">How to Use This Guide:</h2>
+
+        <div class="step">
+            <div class="step-number">Step 1</div>
+            <div class="step-title">Keep This Page Open</div>
+            <div class="step-description">Don't close this browser tab - you'll need it the whole time</div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">Step 2</div>
+            <div class="step-title">Follow Along</div>
+            <div class="step-description">Read each instruction carefully and complete it before moving to the next one</div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">Step 3</div>
+            <div class="step-title">Don't Skip Steps</div>
+            <div class="step-description">Every step is important. If you skip one, things might not work later</div>
+        </div>
+
+        <h2 style="color: #2d3748; margin-top: 2rem; margin-bottom: 1rem;">Before You Begin:</h2>
+
+        <div style="background: #f7fafc; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+            <h3 style="color: #2d3748; margin-bottom: 1rem;">✓ Checklist - Make Sure You Have:</h3>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+                    <span style="color: #48bb78; font-weight: bold;">☐</span> A computer (Windows, Mac, or Linux)
+                </li>
+                <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+                    <span style="color: #48bb78; font-weight: bold;">☐</span> Internet connection
+                </li>
+                <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+                    <span style="color: #48bb78; font-weight: bold;">☐</span> Admin password for your computer (to install software)
+                </li>
+                <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+                    <span style="color: #48bb78; font-weight: bold;">☐</span> A Claude.ai account (we'll help you create one if needed)
+                </li>
+                <li style="padding: 0.5rem 0; font-size: 1.1rem;">
+                    <span style="color: #48bb78; font-weight: bold;">☐</span> 30 minutes of uninterrupted time
+                </li>
+            </ul>
+        </div>
+
+        <a href="CURSOR_CLAUDE_SETUP_GUIDE.html" class="big-button">
+            🚀 I'm Ready - Start the Setup Guide
+        </a>
+
+        <div class="help-box">
+            <div class="help-text">
+                <strong>📞 Need Help?</strong><br>
+                If you get stuck at any point, don't hesitate to ask for help.<br>
+                It's better to ask than to guess!
+            </div>
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e2e8f0; text-align: center; color: #718096;">
+            <p style="font-size: 0.9rem; margin: 0;">
+                Made with ❤️ to help beginners get started with AI coding
+            </p>
+        </div>
+    </div>
+</body>
+</html>
