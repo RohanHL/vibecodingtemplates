@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Setup Guide: Cursor + Claude Code + Perplexity MCP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .time-estimate {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 60px;
+        }
+
+        h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #4a5568;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        h4 {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background: #f7fafc;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #d73a49;
+        }
+
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #4299e1;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li:before {
+            content: "✓ ";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        table th {
+            background: #edf2f7;
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 2px solid #cbd5e0;
+        }
+
+        table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .button:hover {
+            background: #5568d3;
+        }
+
+        footer {
+            background: #2d3748;
+            color: #e2e8f0;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .platform-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #cbd5e0;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.2s;
+        }
+
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0 5px 5px 5px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Beginner's Guide</h1>
+            <p>Cursor + Claude Code + Perplexity MCP</p>
+            <div class="time-estimate">⏱️ Total setup time: 20-30 minutes</div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#cursor">1. Install Cursor</a></li>
+                <li><a href="#claude">2. Install Claude Code</a></li>
+                <li><a href="#perplexity">3. Setup Perplexity</a></li>
+                <li><a href="#scopes">4. Configuration</a></li>
+                <li><a href="#usage">5. Daily Usage</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <section id="overview">
+                <h2>What You're Setting Up</h2>
+                <div class="success-box">
+                    <p>By the end of this guide, you'll have:</p>
+                    <ul class="checklist">
+                        <li><strong>Cursor</strong> - An AI-powered code editor (think VS Code with superpowers)</li>
+                        <li><strong>Claude Code</strong> - Anthropic's AI coding assistant that runs in your terminal</li>
+                        <li><strong>Perplexity MCP</strong> - Real-time web search capabilities for Claude Code</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="cursor">
+                <h2>Part 1: Download and Install Cursor</h2>
+
+                <p>Cursor is a code editor built on top of VS Code with AI features built in. You'll use its integrated terminal to run Claude Code.</p>
+
+                <h3>System Requirements</h3>
+                <ul>
+                    <li><strong>Windows:</strong> Windows 10 or 11</li>
+                    <li><strong>macOS:</strong> macOS 10.15 (Catalina) or newer</li>
+                    <li><strong>Linux:</strong> Ubuntu 20.04+ or Debian-based distributions</li>
+                    <li><strong>RAM:</strong> 4GB minimum (8GB+ recommended)</li>
+                    <li><strong>Disk Space:</strong> At least 500MB free</li>
+                </ul>
+
+                <h3>Download Cursor</h3>
+                <div class="info-box">
+                    <p><strong>Step 1:</strong> Visit <a href="https://cursor.com/download" target="_blank">https://cursor.com/download</a></p>
+                    <p>The website will auto-detect your operating system and provide the correct download.</p>
+                </div>
+
+                <h3>Install Cursor</h3>
+
+                <div class="platform-tabs">
+                    <button class="tab-button active" onclick="showTab('windows-install')">Windows</button>
+                    <button class="tab-button" onclick="showTab('macos-install')">macOS</button>
+                    <button class="tab-button" onclick="showTab('linux-install')">Linux</button>
+                </div>
+
+                <div id="windows-install" class="tab-content active">
+                    <h4>Windows Installation</h4>
+                    <ol>
+                        <li>Locate the downloaded <code>.exe</code> file (usually in Downloads folder)</li>
+                        <li>Right-click and select <strong>"Run as Administrator"</strong></li>
+                        <li>If Windows SmartScreen appears:
+                            <ul>
+                                <li>Click <strong>"More info"</strong></li>
+                                <li>Click <strong>"Run anyway"</strong></li>
+                            </ul>
+                        </li>
+                        <li>Follow the installation wizard (accept defaults)</li>
+                        <li>Wait 1-2 minutes for installation</li>
+                        <li>Launch Cursor when complete</li>
+                    </ol>
+
+                    <p><strong>Alternative via Chocolatey:</strong></p>
+                    <pre><code>choco install cursor -y</code></pre>
+                </div>
+
+                <div id="macos-install" class="tab-content">
+                    <h4>macOS Installation</h4>
+                    <ol>
+                        <li>Locate the downloaded <code>.dmg</code> file</li>
+                        <li>Double-click to open it</li>
+                        <li>Drag the Cursor icon to the Applications folder</li>
+                        <li>Open Applications and double-click Cursor</li>
+                        <li>If you see a security warning:
+                            <ul>
+                                <li>Go to <strong>System Preferences > Security & Privacy</strong></li>
+                                <li>Click <strong>"Open Anyway"</strong></li>
+                            </ul>
+                        </li>
+                        <li>Click "Open" to confirm</li>
+                    </ol>
+                </div>
+
+                <div id="linux-install" class="tab-content">
+                    <h4>Linux Installation (Ubuntu/Debian)</h4>
+
+                    <p><strong>Option A: Using .deb package (recommended)</strong></p>
+                    <pre><code>cd ~/Downloads
+sudo dpkg -i cursor-*.deb
+sudo apt-get install -f  # Fix dependencies</code></pre>
+
+                    <p><strong>Option B: Using AppImage (portable)</strong></p>
+                    <pre><code>cd ~/Downloads
+chmod +x Cursor-*.AppImage
+./Cursor-*.AppImage</code></pre>
+                </div>
+
+                <h3>Initial Cursor Setup</h3>
+                <ol>
+                    <li>Launch Cursor</li>
+                    <li>Sign up or sign in (use email, Google, or GitHub)</li>
+                    <li>Choose your theme and settings (optional)</li>
+                    <li>Import VS Code settings if you have them (optional)</li>
+                </ol>
+
+                <div class="success-box">
+                    <strong>✓ Cursor is now installed!</strong> You'll see an interface similar to VS Code.
+                </div>
+            </section>
+
+            <section id="claude">
+                <h2>Part 2: Install Claude Code in Cursor's Terminal</h2>
+
+                <h3>Open Cursor's Integrated Terminal</h3>
+                <div class="info-box">
+                    <p><strong>Windows/Linux:</strong> Press <code>Ctrl + `</code> (backtick)</p>
+                    <p><strong>macOS:</strong> Press <code>Cmd + `</code></p>
+                </div>
+
+                <h3>Get a Claude Account</h3>
+                <p>Before installing, you need authentication. Choose one:</p>
+
+                <table>
+                    <tr>
+                        <th>Option</th>
+                        <th>Best For</th>
+                        <th>Cost</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude.ai Pro/Max</strong></td>
+                        <td>Individual developers</td>
+                        <td>$20/month subscription</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude Console</strong></td>
+                        <td>Pay-as-you-go API access</td>
+                        <td>Variable, usage-based</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enterprise</strong></td>
+                        <td>Organizations</td>
+                        <td>Custom</td>
+                    </tr>
+                </table>
+
+                <div class="info-box">
+                    <strong>Recommended:</strong> Sign up for Claude Pro at <a href="https://claude.ai" target="_blank">https://claude.ai</a>
+                </div>
+
+                <h3>Install Claude Code</h3>
+
+                <div class="platform-tabs">
+                    <button class="tab-button active" onclick="showTab('windows-claude')">Windows</button>
+                    <button class="tab-button" onclick="showTab('macos-claude')">macOS</button>
+                    <button class="tab-button" onclick="showTab('linux-claude')">Linux</button>
+                </div>
+
+                <div id="windows-claude" class="tab-content active">
+                    <p><strong>Using WSL or Git Bash:</strong></p>
+                    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+
+                    <p><strong>Using PowerShell with NPM:</strong></p>
+                    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+                </div>
+
+                <div id="macos-claude" class="tab-content">
+                    <p><strong>Recommended installation:</strong></p>
+                    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                    <p>Installation takes 1-2 minutes.</p>
+                </div>
+
+                <div id="linux-claude" class="tab-content">
+                    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+                </div>
+
+                <h3>Verify Installation</h3>
+                <pre><code># Check version
+claude --version
+
+# Run diagnostics
+claude doctor</code></pre>
+
+                <h3>Authenticate Claude Code</h3>
+                <ol>
+                    <li>In Cursor's terminal, run: <pre><code>claude /login</code></pre></li>
+                    <li>Choose your authentication method (Claude App is most common)</li>
+                    <li>A browser window opens automatically</li>
+                    <li>Log in to Claude.ai and click "Authorize"</li>
+                    <li>Return to terminal - you'll see "✓ Authentication successful"</li>
+                </ol>
+
+                <h3>Test Claude Code</h3>
+                <pre><code>cd ~/Desktop
+mkdir test-claude
+cd test-claude
+claude</code></pre>
+
+                <p>You should see the Claude Code prompt. Try asking:</p>
+                <pre><code>> What files are in this directory?</code></pre>
+
+                <p>Type <code>/exit</code> to quit.</p>
+
+                <div class="success-box">
+                    <strong>✓ Claude Code is now working!</strong>
+                </div>
+            </section>
+
+            <section id="perplexity">
+                <h2>Part 3: Set Up Perplexity MCP</h2>
+
+                <p>The Perplexity MCP allows Claude Code to search the web in real-time.</p>
+
+                <h3>Get Perplexity API Key</h3>
+                <ol>
+                    <li>Go to <a href="https://www.perplexity.ai" target="_blank">https://www.perplexity.ai</a></li>
+                    <li>Sign in or create an account</li>
+                    <li>Navigate to <strong>Settings > API</strong></li>
+                    <li>Click <strong>"Generate API Key"</strong> or copy existing key</li>
+                    <li>Save it somewhere safe</li>
+                </ol>
+
+                <h3>Install UV Package Manager</h3>
+
+                <div class="platform-tabs">
+                    <button class="tab-button active" onclick="showTab('windows-uv')">Windows</button>
+                    <button class="tab-button" onclick="showTab('macos-uv')">macOS</button>
+                    <button class="tab-button" onclick="showTab('linux-uv')">Linux</button>
+                </div>
+
+                <div id="windows-uv" class="tab-content active">
+                    <p><strong>PowerShell (in Cursor's terminal):</strong></p>
+                    <pre><code>powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</code></pre>
+                </div>
+
+                <div id="macos-uv" class="tab-content">
+                    <p><strong>With Homebrew:</strong></p>
+                    <pre><code>brew install uv</code></pre>
+
+                    <p><strong>Without Homebrew:</strong></p>
+                    <pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+                </div>
+
+                <div id="linux-uv" class="tab-content">
+                    <pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh</code></pre>
+                </div>
+
+                <p><strong>Verify UV installation:</strong></p>
+                <pre><code>uv --version</code></pre>
+
+                <h3>Install Perplexity MCP</h3>
+                <p>Run this command (replace <code>YOUR_API_KEY_HERE</code> with your actual key):</p>
+                <pre><code>claude mcp add --transport stdio perplexity --scope user --env PERPLEXITY_API_KEY=YOUR_API_KEY_HERE -- uvx perplexity-mcp</code></pre>
+
+                <div class="info-box">
+                    <p><strong>Understanding this command:</strong></p>
+                    <ul>
+                        <li><code>--transport stdio</code> = Local process communication</li>
+                        <li><code>perplexity</code> = Server name</li>
+                        <li><code>--scope user</code> = Available across all projects</li>
+                        <li><code>--env</code> = Sets your API key securely</li>
+                    </ul>
+                </div>
+
+                <p><strong>Verify installation:</strong></p>
+                <pre><code>claude mcp list</code></pre>
+
+                <p>You should see <code>perplexity</code> listed.</p>
+
+                <h3>Test Perplexity Integration</h3>
+                <pre><code>cd ~/Desktop/test-claude
+claude
+
+> Search the web for the latest updates on Claude AI from the past week</code></pre>
+
+                <p>Claude will ask for permission. Type <code>A</code> (Allow once) and press Enter.</p>
+
+                <div class="success-box">
+                    <strong>✓ Perplexity MCP is now working!</strong> Claude can now search the web for you.
+                </div>
+            </section>
+
+            <section id="scopes">
+                <h2>Part 4: Understanding Configuration Scopes</h2>
+
+                <h3>MCP Scopes Explained</h3>
+                <p>You installed Perplexity at <strong>user scope</strong>. Here's what that means:</p>
+
+                <table>
+                    <tr>
+                        <th>Scope</th>
+                        <th>Location</th>
+                        <th>When to Use</th>
+                    </tr>
+                    <tr>
+                        <td><strong>User</strong><br>(What you did)</td>
+                        <td><code>~/.config/claude-code/mcp.json</code></td>
+                        <td>Tools you use across all projects (like Perplexity)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Project</strong></td>
+                        <td><code>.mcp.json</code> in project folder</td>
+                        <td>Team-shared tools (gets committed to git)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Local</strong></td>
+                        <td>Project-specific, private</td>
+                        <td>Testing or temporary needs</td>
+                    </tr>
+                </table>
+
+                <div class="warning-box">
+                    <strong>⚠️ Security Note:</strong> Never commit API keys to git! Use user scope for personal keys or environment variables for team projects.
+                </div>
+
+                <h3>Configuration Files</h3>
+                <p>Your Perplexity configuration is stored here:</p>
+                <ul>
+                    <li><strong>macOS/Linux:</strong> <code>~/.config/claude-code/mcp.json</code></li>
+                    <li><strong>Windows:</strong> <code>%APPDATA%\claude-code\mcp.json</code></li>
+                </ul>
+
+                <p>To view it:</p>
+                <pre><code>cat ~/.config/claude-code/mcp.json</code></pre>
+            </section>
+
+            <section id="usage">
+                <h2>Part 5: Using Claude Code in Cursor</h2>
+
+                <h3>Daily Workflow</h3>
+                <ol>
+                    <li>Open Cursor</li>
+                    <li>Open terminal (<code>Ctrl + `</code> or <code>Cmd + `</code>)</li>
+                    <li>Navigate to your project: <pre><code>cd /path/to/your/project</code></pre></li>
+                    <li>Start Claude Code: <pre><code>claude</code></pre></li>
+                    <li>Work with Claude naturally</li>
+                    <li>Exit when done: <code>/exit</code></li>
+                </ol>
+
+                <h3>Essential Commands</h3>
+                <table>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>claude</code></td>
+                        <td>Start interactive session</td>
+                    </tr>
+                    <tr>
+                        <td><code>claude "task"</code></td>
+                        <td>Execute a one-time task</td>
+                    </tr>
+                    <tr>
+                        <td><code>claude -c</code></td>
+                        <td>Continue previous conversation</td>
+                    </tr>
+                    <tr>
+                        <td><code>claude /login</code></td>
+                        <td>Re-authenticate</td>
+                    </tr>
+                    <tr>
+                        <td><code>claude mcp list</code></td>
+                        <td>Show all MCPs</td>
+                    </tr>
+                    <tr>
+                        <td><code>/help</code></td>
+                        <td>Show commands (in session)</td>
+                    </tr>
+                    <tr>
+                        <td><code>/exit</code></td>
+                        <td>Exit session</td>
+                    </tr>
+                </table>
+
+                <h3>Example Use Cases</h3>
+                <div class="info-box">
+                    <p><strong>Create a new feature:</strong></p>
+                    <pre><code>> Create a contact form component with validation</code></pre>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Search the web:</strong></p>
+                    <pre><code>> Search for the best JavaScript libraries for data visualization in 2025</code></pre>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Debug code:</strong></p>
+                    <pre><code>> Fix the bug in app.js where the form isn't submitting</code></pre>
+                </div>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>Troubleshooting Common Issues</h2>
+
+                <h3>Claude Code Not Found</h3>
+                <p><strong>Problem:</strong> <code>command not found: claude</code></p>
+                <p><strong>Solution:</strong> Reload your shell</p>
+                <pre><code>source ~/.bashrc  # Linux
+source ~/.zshrc   # macOS
+# Or close and reopen Cursor's terminal</code></pre>
+
+                <h3>UV Not Found</h3>
+                <p><strong>Problem:</strong> <code>command not found: uv</code></p>
+                <p><strong>Solution:</strong> Re-install and reload</p>
+                <pre><code>curl -LsSf https://astral.sh/uv/install.sh | sh
+source ~/.bashrc  # or ~/.zshrc</code></pre>
+
+                <h3>Perplexity MCP Not Working</h3>
+                <p><strong>Problem:</strong> "Tool 'perplexity_search' not available"</p>
+                <p><strong>Solution:</strong> Check and re-add if needed</p>
+                <pre><code>claude mcp list
+
+# If not listed, add again:
+claude mcp add --transport stdio perplexity --scope user --env PERPLEXITY_API_KEY=YOUR_KEY -- uvx perplexity-mcp</code></pre>
+
+                <h3>API Key Invalid</h3>
+                <p><strong>Problem:</strong> "Authentication failed"</p>
+                <p><strong>Solution:</strong> Update with new key</p>
+                <pre><code>claude mcp remove perplexity
+claude mcp add --transport stdio perplexity --scope user --env PERPLEXITY_API_KEY=NEW_KEY -- uvx perplexity-mcp</code></pre>
+
+                <h3>Permission Denied (macOS)</h3>
+                <p><strong>Solution:</strong></p>
+                <pre><code># For Cursor
+xattr -cr /Applications/Cursor.app
+
+# For Claude Code
+chmod +x $(which claude)</code></pre>
+            </section>
+
+            <section id="summary">
+                <h2>Summary: What You've Accomplished</h2>
+                <ul class="checklist">
+                    <li>Installed Cursor - AI-powered code editor</li>
+                    <li>Installed Claude Code - AI coding assistant in terminal</li>
+                    <li>Authenticated - Connected to your Claude account</li>
+                    <li>Installed UV - Package manager for MCPs</li>
+                    <li>Set up Perplexity MCP - Real-time web search</li>
+                    <li>Tested everything - Verified it all works</li>
+                    <li>Learned the workflow - Ready to code with AI assistance</li>
+                </ul>
+
+                <div class="success-box" style="text-align: center; font-size: 1.2rem;">
+                    <strong>🎉 You're now ready to "vibe code" with Claude Code in Cursor!</strong>
+                </div>
+
+                <h3>Next Steps</h3>
+                <ul>
+                    <li>Create a test project and try Claude Code</li>
+                    <li>Explore other MCP integrations at <a href="https://github.com/modelcontextprotocol" target="_blank">github.com/modelcontextprotocol</a></li>
+                    <li>Read the docs:
+                        <ul>
+                            <li><a href="https://cursor.com/docs" target="_blank">Cursor Documentation</a></li>
+                            <li><a href="https://code.claude.com/docs" target="_blank">Claude Code Documentation</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <footer>
+            <p>Created for easy setup and sharing</p>
+            <p>For more information, visit <a href="https://cursor.com" target="_blank" style="color: #667eea;">cursor.com</a> and <a href="https://code.claude.com" target="_blank" style="color: #667eea;">code.claude.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Get all tabs for the parent element
+            const clickedTab = event.target;
+            const tabContainer = clickedTab.parentElement.nextElementSibling;
+
+            // Hide all tab contents and deactivate buttons in this section
+            let currentElement = clickedTab.parentElement.nextElementSibling;
+            while (currentElement && currentElement.classList.contains('tab-content')) {
+                currentElement.classList.remove('active');
+                currentElement = currentElement.nextElementSibling;
+            }
+
+            // Deactivate all tab buttons in this section
+            clickedTab.parentElement.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Activate clicked tab and show content
+            clickedTab.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
