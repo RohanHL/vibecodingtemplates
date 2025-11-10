@@ -31,7 +31,40 @@ A collection of guides and templates for AI-assisted coding workflows.
 
 ---
 
-### 2. [Troubleshooting First Principles](./TROUBLESHOOTING_FIRST_PRINCIPLES.md)
+### 2. [New Project Starter Kit](./new_project_starter_kit/)
+**Complete production-ready templates and best practices**
+
+A comprehensive starter kit containing lessons learned from building production applications. Includes:
+
+**📚 Documentation:**
+- **BEST_PRACTICES_PRD.md** - 100+ checkpoints for architecture and design
+- **ERRORS_ENCOUNTERED.md** - 23+ real-world errors with solutions
+- **PROJECT_SETUP_CHECKLIST.md** - Step-by-step setup guide
+- **ARCHITECTURE_TEMPLATE.md** - Document your technical decisions
+- **DEPLOYMENT_GUIDE.md** - Railway and Vercel deployment best practices
+- **COMMON_PITFALLS.md** - Quick reference of frequent mistakes
+
+**🛠️ Ready-to-Use Templates:**
+- `.env.example` - Environment variables template
+- `requirements.txt` / `package.json` - Dependency templates
+- `Dockerfile` - Container configuration
+- `database_connection.py` - Database setup with best practices
+- `diagnostic_endpoints.py` - Health check and debugging endpoints
+- And more...
+
+**Use this when:**
+- Starting a new project from scratch
+- Setting up deployment pipelines
+- Onboarding team members
+- Preventing common production issues
+
+**Time saved:** 10+ hours of debugging across documented errors
+
+[📖 View Full Starter Kit →](./new_project_starter_kit/)
+
+---
+
+### 3. [Troubleshooting First Principles](./TROUBLESHOOTING_FIRST_PRINCIPLES.md)
 A systematic approach to debugging and problem-solving in software development.
 
 ---
