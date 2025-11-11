@@ -12,10 +12,15 @@ A collection of guides and templates for AI-assisted coding workflows.
 - ✅ Complete glossary of technical terms
 - ✅ Step-by-step download instructions
 
+**📝 NEW: Having trouble with HTML files? Use the simple Markdown version!**
+
 **Three ways to access:**
-1. **[📥 HOW TO DOWNLOAD](./HOW_TO_DOWNLOAD.html)** - If you're new, start here!
-2. **[👋 START HERE](./START_HERE.html)** - Simple introduction and checklist
-3. **[📖 FULL GUIDE](./CURSOR_CLAUDE_SETUP_GUIDE.html)** - Complete detailed instructions
+1. **[📝 SIMPLE MARKDOWN GUIDE](./SETUP_GUIDE_SIMPLE.md)** - **← START HERE!** Works in any text editor, no HTML issues
+2. **[📥 HOW TO DOWNLOAD](./HOW_TO_DOWNLOAD.html)** - Instructions for downloading guides
+3. **[👋 START HERE](./START_HERE.html)** - Interactive HTML introduction (requires browser)
+4. **[📖 FULL GUIDE](./CURSOR_CLAUDE_SETUP_GUIDE.html)** - Complete HTML guide (requires browser)
+
+**🆘 HTML files not working?** See [HTML_FILE_HELP.md](./HTML_FILE_HELP.md) for troubleshooting
 
 **What's included:**
 - Installing Cursor IDE (with screenshots for each platform)
